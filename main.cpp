@@ -14,21 +14,23 @@ vector<vector<double> > Load_State(string file_name)
 
     while (getline(in_state_, line))
     {
-
+      cout << line << endl;
     	istringstream iss(line);
+      string value;
+
     	vector<double> x_coord;
-    	double state1;
-	    double state2;
-	    double state3;
-	    double state4;
-	    iss >> state1;
-	    x_coord.push_back(state1);
-	    iss >> state2;
-	    x_coord.push_back(state2);
-    	iss >> state3;
-    	x_coord.push_back(state3);
-	    iss >> state4;
-	    x_coord.push_back(state4);
+
+      getline(iss,value,',');
+	    x_coord.push_back(stod(value));
+
+      getline(iss,value,',');
+	    x_coord.push_back(stod(value));
+
+      getline(iss,value,',');
+    	x_coord.push_back(stod(value));
+
+      getline(iss,value,',');
+	    x_coord.push_back(stod(value));
 
 	    state_out.push_back(x_coord);
     }
@@ -53,10 +55,10 @@ vector<string> Load_Label(string file_name)
 
 int main() {
 
-    vector< vector<double> > X_train = Load_State("./train_states.txt");
-    vector< vector<double> > X_test  = Load_State("./test_states.txt");
-    vector< string > Y_train  = Load_Label("./train_labels.txt");
-    vector< string > Y_test   = Load_Label("./test_labels.txt");
+  vector< vector<double> > X_train = Load_State("./train_states.txt");
+  vector< vector<double> > X_test  = Load_State("./test_states.txt");
+  vector< string > Y_train  = Load_Label("./train_labels.txt");
+  vector< string > Y_test   = Load_Label("./test_labels.txt");
 
 	cout << "X_train number of elements " << X_train.size() << endl;
 	cout << "X_train element size " << X_train[0].size() << endl;
